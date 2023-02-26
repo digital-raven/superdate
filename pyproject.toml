@@ -1,0 +1,25 @@
+[build-system]
+requires = ['setuptools', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'superdate'
+authors = [
+    {name = 'OneRedDime', email = 'onereddime@protonmail.com'},
+]
+
+description = 'A super flexible and performant date parser.'
+readme = 'README.rst'
+requires-python = '>=3.8, <4'
+
+dependencies = [
+    'parsedatetime==2.5',
+    'python-dateutil<3',
+]
+
+license = {text = 'GPLv2'}
+
+version = '0.0.0'
+
+[project.urls]
+Homepage = 'https://github.com/OneRedDime/superdate'
