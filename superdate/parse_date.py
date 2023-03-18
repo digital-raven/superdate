@@ -1,8 +1,6 @@
 from datetime import date, datetime, timedelta
 
 import parsedatetime as pdt
-import dateutil.parser
-from dateutil.parser import ParserError
 
 
 def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
@@ -84,17 +82,7 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
         except ValueError:
             pass
 
-    # Less expensive general parser
-    try:
-        d = dateutil.parser.parse(date_)
-        if not force_time and (d.hour, d.minute, d.second, d.microsecond) == (0, 0, 0, 0):
-            d = d.date()
-        _cache[force_time][date_] = d
-        return d
-    except ParserError:
-        pass
-
-    # No matches. Most expensive general parser.
+    # No matches. Expensive general parser.
     cal = pdt.Calendar(version=pdt.VERSION_FLAG_STYLE)
     d, flag = cal.parse(date_)
 
