@@ -6,13 +6,20 @@ from superdate import SuperDate as SD
 
 
 class TestParseDate(unittest.TestCase):
-
-    def test_basic_date_parsing(self):
-        """ Make sure the underlying data is a date.
+    def test_basic_init(self):
+        """ Test basic initializer behaviors
         """
-        act = SD('today')
-        exp = parse_date('today')
-        self.assertEqual(exp, act._date)
+        s = SD('today')
+        o = SD(s, force_time=True)
+
+        self.assertIs(type(s._date), date)
+        self.assertIs(type(o._date), datetime)
+
+        self.assertEqual(datetime.now().date(), s._date)
+
+        now = datetime.now()
+        now = datetime(now.year, now.month, now.day)
+        self.assertEqual(now, o._date)
 
     def test_is_date(self):
         """ Something with no time elements should result in 'date' type
@@ -36,10 +43,16 @@ class TestParseDate(unittest.TestCase):
     def test_super_date_comparison(self):
         """ Test comparison between two SuperDates
         """
-        d1 = SD('today')
-        d2 = SD('today')
-        self.assertEqual(d1, d2)
-        self.assertEqual(d1._date, d2._date)
+        self.assertEqual(SD('today'), SD('today'))
+        self.assertEqual(SD('today'), SD('now'))
+        self.assertEqual(SD('now'), SD('today'))
+        self.assertEqual(SD('now'), SD('now'))
+
+    def test_second_parsing(self):
+        d = SD('30 seconds from today at noon')
+        exp = datetime.now()
+        exp = datetime(exp.year, exp.month, exp.day, 12, 0, 30)
+        self.assertEqual(exp, d._date)
 
     def test_string_comparisons(self):
         """ Test a whole bunch of comparisons.
