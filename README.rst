@@ -26,7 +26,7 @@ parse_date
 ----------
 The parse_date function parses dates from strings. These can be
 plain iso strings or coloquial enslish strings. Plain english strings
-are parsed with down to minute precision.
+are parsed with down to second precision.
 
 If a time was detected, then a datetime will be returned. If no time
 information was detected then a date object will be returned. A

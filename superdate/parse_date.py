@@ -17,7 +17,7 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
     - plain english
 
     If a time is parsed from english then it can have precision down
-    to the minute.
+    to the second.
 
     Args:
         date_: Date to parse.
@@ -27,7 +27,7 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
             to be returned.
 
         _cache: Do not touch. This caches requests and will clear if
-            a new minute has ticked over since the previous call.
+            a new second has ticked over since the previous call.
 
     Returns:
         A date or datetime object.
@@ -39,9 +39,9 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
         return date_
     date_ = str(date_)
 
-    # Init cache. It clears if the minute has changed since the previous call.
+    # Init cache. It clears if the second has changed since the previous call.
     now = datetime.now()
-    now = datetime(now.year, now.month, now.day, now.hour, now.minute)
+    now = datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
 
     if '__init' not in _cache or now != _cache['__init']:
         _cache.clear()
@@ -58,7 +58,6 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
         if not force_time and (d.hour, d.minute, d.second, d.microsecond) == (0, 0, 0, 0):
             d = d.date()
 
-        _cache[force_time][date_] = d
         return d
     except ValueError:
         pass
@@ -106,6 +105,6 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
     if flag == 1 and not force_time:
         _cache[force_time][date_] = date(*d[:3])
     else:
-        _cache[force_time][date_] = datetime(*d[:5])
+        _cache[force_time][date_] = datetime(*d[:6])
 
     return _cache[force_time][date_]
