@@ -49,7 +49,7 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
         _cache[True] = {}
         _cache[False] = {}
 
-    if date_ in _cache:
+    if date_ in _cache[force_time]:
         return _cache[force_time][date_]
 
     # Easy mode try: From ISO
