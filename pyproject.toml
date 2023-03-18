@@ -19,7 +19,7 @@ dependencies = [
 
 license = {text = 'GPLv2'}
 
-version = '0.0.0'
+version = '0.1.1'
 
 [project.urls]
 Homepage = 'https://github.com/OneRedDime/superdate'
