@@ -10,10 +10,10 @@ authors = [
 
 description = 'A super flexible and performant date parser.'
 readme = 'README.rst'
-requires-python = '>=3.8, <4'
+requires-python = '>=3, <4'
 
 dependencies = [
-    'parsedatetime==2.5',
+    'parsedatetime<3',
 ]
 
 license = {text = 'GPLv2'}
