@@ -26,11 +26,15 @@ parse_date
 ----------
 The parse_date function parses dates from strings. These can be
 plain iso strings or coloquial enslish strings. Plain english strings
-are parsed with down to second precision.
+are parsed with down to second precision using the parsedatetime library.
 
 If a time was detected, then a datetime will be returned. If no time
 information was detected then a date object will be returned. A
 datetime can be forced to return with ``force_time=True``.
+
+The difference between this function and vanilla parsedatetime is a cache.
+Dates parsed from Non-ISO strings are cached for faster lookup. This cache
+clears if a new second has ticked over since the previous call.
 
 ::
 
