@@ -44,16 +44,21 @@ class TestParseDate(unittest.TestCase):
     def test_string_comparisons(self):
         """ Test a whole bunch of comparisons.
         """
-        # LT
+        # EQ
         self.assertEqual(SD('today'), 'now')
+        self.assertEqual(SD('today'), 'today at noon')
+        self.assertEqual(SD('Wednesday'), 'Wednesday at 4pm')
+        self.assertEqual(SD('Wednesday'), 'Wednesday at 1am')
 
+        # LT
         self.assertTrue(SD('yesterday') < 'today')
         self.assertTrue(SD('Wednesday at noon') < 'Wednesday at 4pm')
 
         self.assertFalse(SD('Wednesday') < 'Wednesday at noon')
+        self.assertTrue(SD('Wednesday', force_time=True) < 'Wednesday at noon')
         self.assertFalse(SD('Wednesday at noon') < 'Wednesday')
 
-        # Gt
+        # GT
         self.assertTrue(SD('today') > 'yesterday')
 
 

@@ -34,7 +34,10 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
         ValueError if date_ could not be parsed.
     """
     if type(date_) in [date, datetime]:
+        if force_time and type(date_) is date:
+            date_ = datetime(date_.year, date_.month, date_.day)
         return date_
+
     date_ = str(date_)
 
     # Init cache. It clears if the second has changed since the previous call.

@@ -26,7 +26,7 @@ class SuperDate:
     date or datetime object. This should produce an identical interface to
     python3's standard date / datetime objects.
     """
-    def __init__(self, date_, force_time=False):
+    def __init__(self, date_, extra_formats=None, force_time=False):
         """ date needs to be parseable according to parse_date
 
         Args:
@@ -36,10 +36,13 @@ class SuperDate:
         Raises:
             ValueError if the date could not be parsed.
         """
+        d = None
         if type(date_) is SuperDate:
-            self.__dict__['_date'] = date_._date
+            d = parse_date(date_._date, extra_formats, force_time)
         else:
-            self.__dict__['_date'] = parse_date(date_, force_time)
+            d = parse_date(date_, extra_formats, force_time)
+
+        self.__dict__['_date'] = d
 
     def __getattr__(self, key):
         """ If not referring to any SuperDate attrs then forward to date.
