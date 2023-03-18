@@ -18,14 +18,14 @@ Usage
 superdate contains two main components; the parse_date function and
 SuperDate class.
 
-The parse_date function allows for super intuitve date parsing, while
+The parse_date function allows for super intuitive date parsing, while
 the SuperDate class overloads comparison operators to allow for intuitive
 date comparisions against strings or date / datetime objects.
 
 parse_date
 ----------
 The parse_date function parses dates from strings. These can be
-plain iso strings or coloquial enslish strings. Plain english strings
+plain iso strings or colloquial English strings. Plain English strings
 are parsed with down to second precision using the parsedatetime library.
 
 If a time was detected, then a datetime will be returned. If no time
@@ -38,7 +38,7 @@ clears if a new second has ticked over since the previous call.
 
 ::
 
-    # Some examples. Logged on Febuary 26th 2023.
+    # Some examples. Logged on February 26th 2023.
 
     >>> from superdate import parse_date
 
@@ -75,7 +75,7 @@ comparison operators to allow for more intuitive plain-english comparisons.
 
 Comparisons between dates and datetimes will ignore the time. This is
 because a very common use case is, for example, a user who asks "what
-appointments are on wednesday?"
+appointments are on Wednesday?"
 
 ::
 
@@ -100,7 +100,7 @@ appointment will be ignored when comparing against a plain date.
     SuperDate('Wednesday', force_time=True) < 'Wednesday 4pm'  # => True
 
 All dot operators (.hour .day .strftime etc...) are forwarded to the
-underlying python3 standard date / datetime ojbect, so this class should
+underlying python3 standard date / datetime object, so this class should
 be usable anywhere a regular datetime is.
 
 Maintenance and versioning
