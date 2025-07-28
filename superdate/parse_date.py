@@ -86,14 +86,13 @@ def parse_date(date_, extra_formats=None, force_time=False, _cache={}):
             pass
 
     # No matches. Expensive general parser.
-    cal = pdt.Calendar(version=pdt.VERSION_FLAG_STYLE)
-    d, flag = cal.parse(date_)
+    cal = pdt.Calendar(version=pdt.VERSION_CONTEXT_STYLE)
+    d, ctx = cal.parse(date_)
 
-    if not flag:
+    if not ctx.hasDateOrTime:
         raise ValueError(f'The date "{date_}" could not be parsed.')
 
-    # Flag is 1 for date, 2 for time, 3 for datetime
-    if flag == 1 and not force_time:
+    if not ctx.hasTime and not force_time:
         _cache[force_time][date_] = date(*d[:3])
     else:
         _cache[force_time][date_] = datetime(*d[:6])
