@@ -68,7 +68,13 @@ class TestParseDate(unittest.TestCase):
         self.assertTrue(SD('Wednesday at noon') < 'Wednesday at 4pm')
 
         self.assertFalse(SD('Wednesday') < 'Wednesday at noon')
-        self.assertTrue(SD('Wednesday', force_time=True) < 'Wednesday at noon')
+
+        if SD('now') < SD('noon'):
+            self.assertTrue(SD('Wednesday', force_time=True) < 'Wednesday at noon')
+        else:
+            self.assertFalse(SD('Wednesday', force_time=True) < 'Wednesday at noon')
+
+        # Time should be lopped off because 'Wednesday' has no time.
         self.assertFalse(SD('Wednesday at noon') < 'Wednesday')
 
         # GT
