@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 [project]
 name = 'superdate'
 authors = [
-    {name = 'OneRedDime', email = 'onereddime@protonmail.com'},
+    {name = 'Raven', email = 'raven@rubicon.aleeas.com'},
 ]
 
 description = 'A super flexible and performant date parser.'
@@ -16,9 +16,9 @@ dependencies = [
     'parsedatetime<3',
 ]
 
-license = {text = 'GPLv2'}
+license = 'GPL-2.0'
 
-version = '0.2.1'
+version = '0.2.2'
 
 [project.urls]
-Homepage = 'https://github.com/OneRedDime/superdate'
+Homepage = 'https://github.com/digital-raven/superdate'
