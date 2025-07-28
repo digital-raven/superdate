@@ -62,9 +62,6 @@ clears if a new second has ticked over since the previous call.
     datetime.datetime(2023, 3, 4, 12, 0)
 
     >>> parse_date('January')
-    datetime.date(2023, 1, 26)
-
-    >>> parse_date('January next year')
     datetime.date(2024, 1, 1)
 
 
@@ -105,7 +102,7 @@ be usable anywhere a regular datetime is.
 
 Maintenance and versioning
 ==========================
-Update the CHANGELOG when and version in pyproject.toml when cutting a release.
+Update the CHANGELOG and version in pyproject.toml when cutting a release.
 
 Build with ``python3 -m build`` and use ``twine upload -r pypi dist/*`` to
 upload to pypi.
